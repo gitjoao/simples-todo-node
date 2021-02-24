@@ -5,3 +5,5 @@ const todo = [
   }
 ]; 
 exports.getAll = () => { return todo }
+
+exports.save = (newTodo) => { todo.push(newTodo)}
