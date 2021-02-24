@@ -1,5 +1,5 @@
-const j = ['a', 'b', 'c']; 
-
+const todoModels = require('../models/todoModels')
 exports.getAll = (req, res) => {
-  res.status(201).send(j);
+  const allTodos = todoModels.getAll()
+  res.status(200).send(allTodos);
 };
