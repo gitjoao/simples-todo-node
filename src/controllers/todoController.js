@@ -13,3 +13,35 @@ exports.create = (req, res) => {
   todoModels.save(newTodo)
   res.status(201).send(newTodo);
 };
+
+exports.find = (req, res) => {
+ const todo = todoModels.findById(req.params.id)
+  if (todo !== undefined) {
+    res.status(200).send(todo);
+  } else {
+    res.status(400).send('not found');
+  }
+};
+
+exports.edit = (req, res) => {
+  const id = req.params.id
+  const newData = req.body['info']
+  const existTodo = todoModels.findById(id)
+  if (existTodo !== undefined) {
+     const todo = todoModels.editById(id, newData)
+     res.status(200).send(todo);
+   } else {
+     res.status(400).send('not found');
+   }
+ };
+
+ exports.delete = (req, res) => {
+  const id = req.params.id
+  const existTodo = todoModels.findById(id)
+  if (existTodo !== undefined) {
+    todoModels.delete(id)
+     res.status(204).send();
+   } else {
+     res.status(400).send('not found');
+   }
+ };
